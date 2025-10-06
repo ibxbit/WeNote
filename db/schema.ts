@@ -1,4 +1,5 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { One, relations } from "drizzle-orm";
+import { pgTable, text, timestamp, boolean, jsonb } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -60,5 +61,36 @@ export const verification = pgTable("verification", {
     .notNull(),
 });
 
+
+export const notebooks = pgTable("notebooks", {
+  id: text("id").primaryKey(),
+  name: text('name').notNull(),
+  userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").$default(() => new Date()),
+  updatedAt: timestamp("updated_at").$default(() => new Date())
+});
+
+export const notebooRelations = relations(notebooks, ({ many, one }) => ({
+  notes: many(notes),
+  user: one(user, { fields: [notebooks.userId], references: [user.id] }),
+}));
+
+export const Notebook = typeof notebooks.$inferSelect;
+export type InsertNoteboook = typeof notebooks.$inferInsert;
+
+export const notes = pgTable("notes", {
+  id: text("id").primaryKey(),
+  title: text('title').notNull(),
+  content: jsonb("content").notNull(),  // we are using jsonb to store rich text content bassically we are gonna use tip tap editor
+  notebookId: text("notebook_id").notNull().references(() => notebooks.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").$default(() => new Date()),
+  updatedAt: timestamp("updated_at").$default(() => new Date())
+});
+
+export const Note = typeof notes.$inferSelect;
+
+export const noteRelations = relations(notes, ({ one }) => ({
+  notebook: one(notebooks, { fields: [notes.notebookId], references: [notebooks.id] }),
+}));
 
 export const schema = { user, session, account, verification };
