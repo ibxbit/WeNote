@@ -1,7 +1,10 @@
 'use client';
-import { ReactNode } from 'react';
+import { ReactNode, ComponentType } from 'react'; // Import ComponentType
 import { motion, Variants } from 'motion/react';
 import React from 'react';
+
+// Define the type that 'motion.create' actually expects
+type MotionComponentType = string | React.ComponentType<React.HTMLAttributes<HTMLElement>>;
 
 export type PresetType =
   | 'fade'
@@ -23,6 +26,8 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
+  // Use a more restrictive type for 'as' if possible, or keep React.ElementType
+  // and handle the conversion internally.
   as?: React.ElementType;
   asChild?: React.ElementType;
 };
@@ -115,12 +120,16 @@ function AnimatedGroup({
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
+  // FIX: Cast to MotionComponentType (string | ComponentType<any>) instead of
+  // keyof JSX.IntrinsicElements to satisfy the motion.create typing.
   const MotionComponent = React.useMemo(
-    () => motion.create(as as keyof JSX.IntrinsicElements),
+    () => motion.create(as as MotionComponentType),
     [as]
   );
+  
+  // FIX: Apply the same casting fix here.
   const MotionChild = React.useMemo(
-    () => motion.create(asChild as keyof JSX.IntrinsicElements),
+    () => motion.create(asChild as MotionComponentType),
     [asChild]
   );
 
