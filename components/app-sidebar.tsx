@@ -15,7 +15,7 @@ import Link from "next/link";
 
 export async function AppSidebar({
   ...props
-}: React.ComponentProps<typeof Sidebar>) {
+}: React.ComponentProps<typeof Sidebar>) { 
   const notebooks = await getNotebooks();
 
   const data = {
