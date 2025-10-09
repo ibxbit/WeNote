@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import { getNotebooks } from "@/server/notebooks";
 import Image from "next/image";
-import { SidebarData } from "./sidebar-data";
+import { SidebarData } from "./sidebar-data"; 
 import Link from "next/link";
 
 export async function AppSidebar({
