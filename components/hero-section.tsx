@@ -84,7 +84,7 @@ export default function HeroSection() {
                       className="rounded-xl px-5 text-base"
                     >
                       <Link href="/dashboard">
-                        <span className="text-nowrap">Start Forging</span>
+                        <span className="text-nowrap">Start Noteing</span>
                       </Link>
                     </Button>
                   </div>
@@ -109,9 +109,9 @@ export default function HeroSection() {
                   aria-hidden
                   className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
                 />
-                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-2 shadow-lg shadow-zinc-950/15 ring-1">
                   <Image
-                    className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
+                    className="bg-background aspect-15/7 relative hidden rounded-2xl dark:block"
                     src="/dark1.png"
                     alt="app screen"
                     width="2700"
