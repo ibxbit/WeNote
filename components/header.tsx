@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { BookOpen, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -40,12 +40,7 @@ export const HeroHeader = () => {
                 aria-label="home"
                 className="flex items-center space-x-2"
               >
-                <Image
-                  src="/wenote-logo.png"
-                  alt="logo"
-                  width={60}
-                  height={60}
-                />
+                <MistKitLogo />
 
                 <span className="text-2xl font-bold">WeNote</span>
               </Link>
@@ -127,3 +122,17 @@ export const HeroHeader = () => {
     </header>
   );
 };
+
+const MistKitLogo = ({ className }: { className?: string }) => (
+  <div
+    aria-hidden
+    className={cn(
+      'relative flex size-9 items-center justify-center translate-y-0.5 rounded-[var(--radius)] border border-background bg-gradient-to-b from-yellow-300 to-orange-600 shadow-lg shadow-black/20 ring-1 ring-black/10',
+      className
+    )}
+  >
+    <BookOpen className="mask-b-from-25% size-6 fill-white stroke-white drop-shadow-sm" />
+    <BookOpen className="absolute inset-0 m-auto size-6 fill-white stroke-white opacity-65 drop-shadow-sm" />
+    <div className="absolute inset-2 z-10 m-auto h-[18px] w-px translate-y-px rounded-full bg-black/10" />
+  </div>
+)
