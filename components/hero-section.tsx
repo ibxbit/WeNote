@@ -1,135 +1,81 @@
-import React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { TextEffect } from "@/components/ui/text-effect";
-import { AnimatedGroup } from "@/components/ui/animated-group";
-import { HeroHeader } from "./header";
-
-const transitionVariants = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(12px)",
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-    },
-  },
-};
+import React from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { BookOpen } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export default function HeroSection() {
   return (
-    <>
-      <HeroHeader />
-      <main className="overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 isolate hidden contain-strict lg:block"
-        >
-          <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
-          <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
-          <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
-        </div>
-        <section>
-          <div className="relative pt-24">
-            <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"></div>
-            <div className="mx-auto max-w-5xl px-6">
-              <div className="sm:mx-auto lg:mr-auto lg:mt-0">
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  as="h1"
-                  className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16"
-                >
-                  🔥 WeNote Smarter Notes. Code Better.
-                </TextEffect>
-                <TextEffect
-                  per="line"
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  delay={0.5}
-                  as="p"
-                  className="mt-8 max-w-2xl text-pretty text-lg"
-                >
-                  Supercharge your workflow with WeNote — the smartest way to
-                  capture, organize, and link dev notes, code snippets, and
-                  technical insights.
-                </TextEffect>
+    <section className="py-40">
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-6 lg:px-0">
+        <div className="relative">
+          <MistKitLogo />
+          <h1 className="mt-16 max-w-xl text-balance text-5xl font-medium">
+            The Note App
+          </h1>
 
-                <AnimatedGroup
-                  variants={{
-                    container: {
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.05,
-                          delayChildren: 0.75,
-                        },
-                      },
-                    },
-                    ...transitionVariants,
-                  }}
-                  className="mt-12 flex items-center gap-2"
-                >
-                  <div
-                    key={1}
-                    className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5"
-                  >
-                    <Button
-                      asChild
-                      size="lg"
-                      className="rounded-xl px-5 text-base"
-                    >
-                      <Link href="/dashboard">
-                        <span className="text-nowrap">Start Noteing</span>
-                      </Link>
-                    </Button>
-                  </div>
-                </AnimatedGroup>
-              </div>
-            </div>
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.75,
-                    },
-                  },
-                },
-                ...transitionVariants,
-              }}
+          <p className="text-muted-foreground mb-6 mt-4 text-balance text-xl">
+            The Note App is a simple note app that allows you to create and manage your notes.
+          </p>
+
+          <div className="flex flex-col items-center gap-2 sm:flex-row">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full sm:w-auto border-black text-black dark:text-white hover:bg-black hover:text-white"
             >
-              <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                <div
-                  aria-hidden
-                  className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
-                />
-                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-2 shadow-lg shadow-zinc-950/15 ring-1">
-                  <Image
-                    className="bg-background aspect-15/7 relative hidden rounded-2xl dark:block"
-                    src="/dark1.png"
-                    alt="app screen"
-                    width="2700"
-                    height="1440"
-                  />
-                  <Image
-                    className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                    src="/light1.png"
-                    alt="app screen"
-                    width="2700"
-                    height="1440"
-                  />
-                </div>
-              </div>
-            </AnimatedGroup>
+              <Link href="/dashboard">
+                <span className="whitespace-nowrap">Get Started</span>
+              </Link>
+            </Button>
+
+            <Button asChild variant="ghost" className="w-full sm:w-auto">
+              <Link href="/dashboard">
+                <span className="whitespace-nowrap">View Demo</span>
+              </Link>
+            </Button>
           </div>
-        </section>
-      </main>
-    </>
-  );
+        </div>
+
+        {/* Hero Image */}
+        <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+          <div
+            aria-hidden
+            className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
+          />
+          <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-2 shadow-lg shadow-zinc-950/15 ring-1">
+            <Image
+              className="bg-background aspect-15/7 relative hidden rounded-2xl dark:block"
+              src="/dark1.png"
+              alt="app screen"
+              width="2700"
+              height="1440"
+            />
+            <Image
+              className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
+              src="/light1.png"
+              alt="app screen"
+              width="2700"
+              height="1440"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
+
+const MistKitLogo = ({ className }: { className?: string }) => (
+  <div
+    aria-hidden
+    className={cn(
+      'relative flex size-9 items-center justify-center translate-y-0.5 rounded-[var(--radius)] border border-background bg-gradient-to-b from-yellow-300 to-orange-600 shadow-lg shadow-black/20 ring-1 ring-black/10',
+      className
+    )}
+  >
+    <BookOpen className="mask-b-from-25% size-6 fill-white stroke-white drop-shadow-sm" />
+    <BookOpen className="absolute inset-0 m-auto size-6 fill-white stroke-white opacity-65 drop-shadow-sm" />
+    <div className="absolute inset-2 z-10 m-auto h-[18px] w-px translate-y-px rounded-full bg-black/10" />
+  </div>
+)
