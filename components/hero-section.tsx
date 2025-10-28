@@ -8,38 +8,48 @@ import { cn } from '@/lib/utils'
 export default function HeroSection() {
   return (
     <section className="py-40">
-      <div className="relative z-10 mx-auto w-full max-w-2xl px-6 lg:px-0">
-        <div className="relative">
-          <MistKitLogo />
-          <h1 className="mt-16 max-w-xl text-balance text-5xl font-medium">
-            The Note App
+      <div className="relative z-10 mx-auto w-full px-6 lg:px-0">
+        <div className="relative text-center">
+          <h1 className="mt-16 text-6xl font-extrabold sm:text-7xl md:text-8xl">
+            Meet Your Dream
+            <div className="mt-4 flex items-center justify-center gap-6">
+              <span>Note</span>
+              <MistKitLogo />
+              <span>Taker</span>
+            </div>
           </h1>
 
-          <p className="text-muted-foreground mb-6 mt-4 text-balance text-xl">
-            The Note App is a simple note app that allows you to create and manage your notes.
+          <p className="text-muted-foreground mb-6 mt-6 text-balance text-lg sm:text-xl">
+            Uplink manages follow-ups, scheduling, and tasks
+            <br className="hidden sm:inline" />
+            throughout your day not just meetings.
           </p>
 
-          <div className="flex flex-col items-center gap-2 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               asChild
-              variant="outline"
-              className="w-full sm:w-auto border-black text-black dark:text-white hover:bg-black hover:text-white"
+              variant="default"
+              className="w-full sm:w-auto bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90 px-8 py-6"
             >
               <Link href="/dashboard">
-                <span className="whitespace-nowrap">Get Started</span>
+                <span className="whitespace-nowrap">Book a Call</span>
               </Link>
             </Button>
 
-            <Button asChild variant="ghost" className="w-full sm:w-auto">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full sm:w-auto px-8 py-6 border-transparent bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+            >
               <Link href="/dashboard">
-                <span className="whitespace-nowrap">View Demo</span>
+                <span className="whitespace-nowrap">Explore More</span>
               </Link>
             </Button>
           </div>
         </div>
 
         {/* Hero Image */}
-        <div className="relative -mr-56 w-6xl mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+        <div className="relative mx-auto mt-8 max-w-6xl overflow-hidden px-2 sm:mt-12 md:mt-20">
           <div
             aria-hidden
             className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
@@ -70,12 +80,12 @@ const MistKitLogo = ({ className }: { className?: string }) => (
   <div
     aria-hidden
     className={cn(
-      'relative flex size-9 items-center justify-center translate-y-0.5 rounded-[var(--radius)] border border-background bg-gradient-to-b from-yellow-300 to-orange-600 shadow-lg shadow-black/20 ring-1 ring-black/10',
+      'relative flex size-16 items-center justify-center rounded-xl border border-background bg-zinc-800 shadow-xl shadow-black/20 ring-1 ring-black/10 dark:bg-black rotate-12',
       className
     )}
   >
-    <BookOpen className="mask-b-from-25% size-6 fill-white stroke-white drop-shadow-sm" />
-    <BookOpen className="absolute inset-0 m-auto size-6 fill-white stroke-white opacity-65 drop-shadow-sm" />
-    <div className="absolute inset-2 z-10 m-auto h-[18px] w-px translate-y-px rounded-full bg-black/10" />
+    <span className='text-3xl' role="img" aria-label="Note Taker Icon">
+      🗃️
+    </span>
   </div>
 )
